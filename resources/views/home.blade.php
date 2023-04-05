@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@section('menu')
+    @include('menu');
+@endsection
+
+
 @section('content')
-    <div class="row">
-        asdfasd<br />
-        dfasfgdf
-    </div>
+    saraksts ar ierakstiem
 @endsection

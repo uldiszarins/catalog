@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [CatalogController::class, 'home']);
 
-Route::get('/add', function () {
-    return view('home');
-});
+Route::resource('/catalog', CatalogController::class);
+
+Route::resource('/category', CategoryController::class);
+Route::resource('/language', LanguageController::class);
+
