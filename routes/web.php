@@ -16,7 +16,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [CatalogController::class, 'home']);
+Route::get('/', [CatalogController::class, 'home'])->name('home');
 
 Route::resource('/catalog', CatalogController::class);
 

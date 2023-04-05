@@ -17,6 +17,7 @@ class CatalogRequest extends FormRequest
     {
         $rules = Catalog::VALIDATION_RULES;
 
+        /*
         if ($this->getMethod() == 'POST') { // store
             $rules += [
                 'b_name' => [
@@ -36,6 +37,7 @@ class CatalogRequest extends FormRequest
                 ]
             ];
         }
+        */
 
         return $rules;
     }

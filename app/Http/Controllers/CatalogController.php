@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Http\Requests\CatalogRequest;
+use App\Http\Service\CatalogService;
 
 class CatalogController extends Controller
 {
@@ -20,7 +22,7 @@ class CatalogController extends Controller
     {
         $categories = Category::all()->toArray();
 
-        $languages = Language::all()->toArray();
+        $languages = Language::all();
 
         return view('createCatalog', [
             'inventoryNumber' => 3001,
@@ -33,8 +35,15 @@ class CatalogController extends Controller
     {
         $request->validated();
         $catalog = [
-            'b_name' => $request->b_name,
-            'b_code' => $request->b_code,
+            'category' => $request->category,
+            'name' => $request->name,
+            'inventory_number' => $request->inventory_number,
+            'language' => $request->language,
+            'author' => $request->author,
+            'year' => $request->year,
+            'page_count' => $request->page_count,
+            'photo' => $request->photo,
+            'location' => $request->location,
         ];
 
         try {
