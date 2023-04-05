@@ -45,14 +45,15 @@ class CatalogController extends Controller
             'photo' => $request->photo,
             'location' => $request->location,
         ];
-
         try {
             CatalogService::createCatalog($catalog);
         } catch (\Exception $e) {
             return redirect()
                 ->route('catalog.create')
+                ->withInput()
                 ->withErrors(['msg' => 'Kļūda! ' . $e->getMessage()]);
         }
+
 
         return redirect()
             ->route('home')
