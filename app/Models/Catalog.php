@@ -23,10 +23,36 @@ class Catalog extends Model
     ];
 
     public const VALIDATION_RULES = [
+        'category' => [
+            'required'
+        ],
         'name' => [
+            'required',
             'string',
             'min:2',
             'max:255',
         ],
+        'inventory_number' => [
+            'required',
+        ],
+        'language' => [
+            'required',
+        ],
+        'author' => [
+            'required',
+            'string',
+            'min:2',
+            'max:255'
+        ],
+        'year' => [
+            'required',
+            'date_format:Y',
+            'gt:1900',
+        ],
+        'location' => [
+            'nullable',
+            'string',
+            'max:255',
+        ]
     ];
 }

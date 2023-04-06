@@ -13,7 +13,7 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedInteger('category')->comment('categories.id');
             $table->string('name', 255)->comment('Nosaukums');
-            $table->string('inventory_number', 10)->comment('Inventāra numurs');
+            $table->unsignedMediumInteger('inventory_number')->comment('Inventāra numurs');
             $table->unsignedInteger('language')->comment('languages.id');
             $table->string('author', 255)->comment('Autors');
             $table->year('year')->comment('Izdošanas gads');
