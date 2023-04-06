@@ -73,4 +73,13 @@ class CatalogController extends Controller
         }
         return ($maxInventoryNumber + 1);
     }
+
+    public function getCatalogData()
+    {
+        return [
+            [
+                'name' => 'asdf',
+            ]
+        ];
+    }
 }

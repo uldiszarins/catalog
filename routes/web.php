@@ -21,6 +21,8 @@ Route::get('/', [CatalogController::class, 'home'])->name('home');
 Route::get('/get_inventory_number/{category}', [CatalogController::class, 'getInventoryNumber'])
     ->where(['category' => '[0-9]+']);
 
+Route::get('/catalogData', [CatalogController::class, 'getCatalogData']);
+
 Route::resource('/catalog', CatalogController::class);
 
 Route::resource('/category', CategoryController::class);

@@ -21,6 +21,8 @@
                 </tr>
             </thead>
             <tbody>
+                <?php
+                /*
                 @foreach ($catalogs as $catalog)
                     <tr>
                         <td>{{ $catalog->category }}</td>
@@ -33,6 +35,8 @@
                         <td>{{ $catalog->location }}</td>
                     </tr>
                 @endforeach
+                */
+                ?>
             </tbody>
         </table>
     </div>
@@ -41,8 +45,7 @@
 @section('js')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/jquery-ui.theme.min.css') }}">
+
 
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
@@ -57,6 +60,7 @@
     <script>
         $(document).ready(function() {
             $('#catalog_table').DataTable({
+                ajax: '/catalogData',
                 dom: '<"row"<"col"B><"col"f>><"tabula"rt><"row"<"col"i><"col"l><"col"p>>',
                 buttons: [{
                         extend: 'copy',
