@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('menu');
+    @include('menu')
 @endsection
 
 

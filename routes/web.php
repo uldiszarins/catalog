@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,3 @@ Route::resource('/catalog', CatalogController::class);
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/language', LanguageController::class);
-

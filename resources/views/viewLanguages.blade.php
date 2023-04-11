@@ -10,14 +10,16 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Katalogs</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Kategorijas</li>
+                    <li class="breadcrumb-item active" aria-current="page">Valodas</li>
                 </ol>
             </nav>
         </div>
         <table class="table table-bordered table-striped">
-            @foreach ($categories as $category)
+            @foreach ($languages as $language)
                 <tr>
-                    <td>{{ $category['category_name'] }}</td>
+                    <td><a
+                            href="{{ route('language.show', ['language' => $language['id']]) }}">{{ $language['language'] }}</a>
+                    </td>
                 </tr>
             @endforeach
         </table>
