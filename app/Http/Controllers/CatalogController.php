@@ -76,10 +76,11 @@ class CatalogController extends Controller
 
     public function getCatalogData()
     {
+        $catalogData = Catalog::select('category', 'name', 'inventory_number', 'language', 'author', 'year', 'page_count', 'location')
+            ->orderBy('id', 'ASC')
+            ->get();
         return [
-            [
-                'name' => 'asdf',
-            ]
+            'data' => $catalogData,
         ];
     }
 }

@@ -61,6 +61,31 @@
         $(document).ready(function() {
             $('#catalog_table').DataTable({
                 ajax: '/catalogData',
+                columns: [{
+                        data: 'category'
+                    },
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'inventory_number'
+                    },
+                    {
+                        data: 'language'
+                    },
+                    {
+                        data: 'author'
+                    },
+                    {
+                        data: 'year'
+                    },
+                    {
+                        data: 'page_count'
+                    },
+                    {
+                        data: 'location'
+                    }
+                ],
                 dom: '<"row"<"col"B><"col"f>><"tabula"rt><"row"<"col"i><"col"l><"col"p>>',
                 buttons: [{
                         extend: 'copy',
@@ -85,7 +110,7 @@
                     url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/lv.json'
                 },
                 "lengthChange": true,
-                lengthMenu: [10, 20, 50, 100],
+                lengthMenu: [20, 50, 100],
                 "order": []
             });
 
