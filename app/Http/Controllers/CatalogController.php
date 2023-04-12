@@ -14,23 +14,28 @@ class CatalogController extends Controller
 {
     public function home(): View
     {
-        return view('home', [
-            'catalogs' => Catalog::all(),
-            'categories' => Category::all()->toArray(),
-        ]);
+        return view('home');
     }
 
     public function create(): View
     {
-        $categories = Category::all()->toArray();
-
         $languages = Language::all();
 
         return view('createCatalog', [
             'inventoryNumber' => 3001,
             'languages' => $languages,
-            'categories' => $categories,
             'max_inventory_number' => $this->getInventoryNumber(1),
+        ]);
+    }
+
+    public function show(Int $catalogId): View
+    {
+        $catalog = Catalog::findOrFail($catalogId);
+        $languages = Language::all();
+
+        return view('editCatalog', [
+            'catalog' => $catalog,
+            'languages' => $languages,
         ]);
     }
 
@@ -68,18 +73,25 @@ class CatalogController extends Controller
     {
         $maxInventoryNumber = Catalog::where('category', $category)->max('inventory_number');
 
+        // TODO: neiedod 001 nekad
         if (!$maxInventoryNumber) {
             $maxInventoryNumber = $category . '001';
         }
         return ($maxInventoryNumber + 1);
     }
 
-    public function getCatalogData()
+    public function getCatalogData(Int $category = null)
     {
-        $catalogData = Catalog::select('category', 'name', 'inventory_number', 'language', 'author', 'year', 'page_count', 'location')
+        $catalogData = Catalog::select('id', 'category', 'name', 'inventory_number', 'language', 'author', 'year', 'page_count', 'location')
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
             ->orderBy('id', 'ASC')
             ->get();
         return [
+            'draw' => 1,
+            'recordsTotal' => 100,
+            'recordsFiltered' => 20,
             'data' => $catalogData,
         ];
     }

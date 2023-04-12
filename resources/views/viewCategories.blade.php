@@ -17,7 +17,7 @@
         <table class="table table-bordered table-striped">
             @foreach ($categories as $category)
                 <tr>
-                    <td>{{ $category['category_name'] }}</td>
+                    <td></td>
                 </tr>
             @endforeach
         </table>

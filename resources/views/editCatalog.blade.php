@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('menu')
+    @include('menu');
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@
             @csrf
             <div class="card mt-3">
                 <div class="card-header">
-                    <h5>Pievienot jaunu ierakstu</h5>
+                    <h5>Labot</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-4 row">
@@ -48,7 +48,8 @@
                         <div class="col-sm-9">
                             <select class="form-select" name="category" id="category" onchange="getInventoryNumber()">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
+                                    <option @if ($category['id'] == $catalog->category) selected @endif value="{{ $category['id'] }}">
+                                        {{ $category['category_name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -57,15 +58,14 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Nosaukums</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="name" id="name" required
-                                value="{{ old('name') }}">
+                                value="{{ $catalog->name }}">
                         </div>
                     </div>
                     <div class="mb-4 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Inventāra numurs</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" required name="inventory_number"
-                                id="inventory_number"
-                                value="@if ($max_inventory_number) {{ $max_inventory_number }} @else {{ old('inventory_number') }} @endif">
+                                id="inventory_number" value="{{ $catalog->inventory_number }}">
                         </div>
                     </div>
                     <div class="mb-4 row">
@@ -73,7 +73,8 @@
                         <div class="col-sm-9">
                             <select class="form-select" name="language" id="language">
                                 @foreach ($languages as $language)
-                                    <option value="{{ $language['id'] }}">{{ $language['language'] }}</option>
+                                    <option @if ($language['id'] == $catalog->language) selected @endif value="{{ $language['id'] }}">
+                                        {{ $language['language'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -82,21 +83,21 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Autors</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="author" id="author"
-                                value="{{ old('author') }}">
+                                value="{{ $catalog->author }}">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Izdošanas gads</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" name="year" id="year"
-                                value="{{ old('year') }}">
+                                value="{{ $catalog->year }}">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Lapaspušu skaits</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" name="page_count" id="page_count"
-                                value="{{ old('page_count') }}">
+                                value="{{ $catalog->page_count }}">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -109,12 +110,13 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Atrašanās vieta</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="location" id="location"
-                                value="{{ old('location') }}">
+                                value="{{ $catalog->location }}">
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">Pievienot</button>
+                    <button type="submit" class="btn btn-primary">Labot</button>
+                    <button type="submit" class="btn btn-danger">Dzēst</button>
                     <a href="/" class="btn btn-secondary">Atcelt</a>
                 </div>
             </div>

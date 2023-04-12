@@ -1,9 +1,9 @@
 <ul class="nav flex-column mb-2">
-    @foreach ($categories as $category)
+    @foreach ($categories as $key => $category)
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/?cat={{ $category }}">
                 <span data-feather="file-text"></span>
-                {{ $category['category_name'] }}
+                {{ $key }} {{ $categoriesCount[$category] }}
             </a>
         </li>
     @endforeach

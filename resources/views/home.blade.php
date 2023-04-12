@@ -4,7 +4,6 @@
     @include('menu')
 @endsection
 
-
 @section('content')
     <div class="container-fluid mt-4">
         <table class="table table-bordered" id="catalog_table">
@@ -21,22 +20,6 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                /*
-                @foreach ($catalogs as $catalog)
-                    <tr>
-                        <td>{{ $catalog->category }}</td>
-                        <td>{{ $catalog->name }}</td>
-                        <td>{{ $catalog->inventory_number }}</td>
-                        <td>{{ $catalog->language }}</td>
-                        <td>{{ $catalog->author }}</td>
-                        <td class="text-end">{{ $catalog->year }}</td>
-                        <td class="text-end">{{ $catalog->page_count }}</td>
-                        <td>{{ $catalog->location }}</td>
-                    </tr>
-                @endforeach
-                */
-                ?>
             </tbody>
         </table>
     </div>
@@ -59,16 +42,26 @@
 
     <script>
         $(document).ready(function() {
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var category = urlParams.get('cat');
+
             $('#catalog_table').DataTable({
-                ajax: '/catalogData',
+                ajax: '/catalogData/' + (category ? category : ''),
+                //serverSide: true,
                 columns: [{
                         data: 'category'
                     },
                     {
-                        data: 'name'
+                        data: 'name',
+                        "render": function(data, type, row) {
+                            var id = row.id;
+                            return '<a href="/catalog/' + id + '">' + data + '</a>';
+                        }
                     },
                     {
-                        data: 'inventory_number'
+                        data: 'inventory_number',
+                        sClass: 'text-end',
                     },
                     {
                         data: 'language'
@@ -77,10 +70,12 @@
                         data: 'author'
                     },
                     {
-                        data: 'year'
+                        data: 'year',
+                        sClass: 'text-end',
                     },
                     {
-                        data: 'page_count'
+                        data: 'page_count',
+                        sClass: 'text-end',
                     },
                     {
                         data: 'location'
