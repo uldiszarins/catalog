@@ -47,8 +47,8 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Kategorija</label>
                         <div class="col-sm-9">
                             <select class="form-select" name="category" id="category" onchange="getInventoryNumber()">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category['id'] }}">{{ $category['category_name'] }}</option>
+                                @foreach ($categories as $key => $category)
+                                    <option value="{{ $category }}">{{ $key }}</option>
                                 @endforeach
                             </select>
                         </div>
