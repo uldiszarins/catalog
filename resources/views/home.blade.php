@@ -50,12 +50,12 @@
                 ajax: '/catalogData/' + (category ? category : ''),
                 //serverSide: true,
                 columns: [{
-                        data: 'category'
+                        data: 'category_name'
                     },
                     {
                         data: 'name',
                         "render": function(data, type, row) {
-                            var id = row.id;
+                            var id = row.catalog_id;
                             return '<a href="/catalog/' + id + '">' + data + '</a>';
                         }
                     },
@@ -105,7 +105,7 @@
                     url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/lv.json'
                 },
                 "lengthChange": true,
-                lengthMenu: [20, 50, 100],
+                lengthMenu: [15, 30, 50],
                 "order": []
             });
 

@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CatalogController::class, 'home'])->name('home');
 
@@ -13,7 +12,7 @@ Route::get('/get_inventory_number/{category}', [CatalogController::class, 'getIn
 
 Route::get('/catalogData/{category?}', [CatalogController::class, 'getCatalogData'])
     ->where(['category' => '[0-9]+']);
-    
+
 Route::pattern('catalog', '[0-9]+');
 Route::resource('/catalog', CatalogController::class);
 

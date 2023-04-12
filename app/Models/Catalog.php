@@ -24,7 +24,7 @@ class Catalog extends Model
 
     public const VALIDATION_RULES = [
         'category' => [
-            'required'
+            'required',
         ],
         'name' => [
             'required',
@@ -42,7 +42,7 @@ class Catalog extends Model
             'required',
             'string',
             'min:2',
-            'max:255'
+            'max:255',
         ],
         'year' => [
             'required',
@@ -53,6 +53,6 @@ class Catalog extends Model
             'nullable',
             'string',
             'max:255',
-        ]
+        ],
     ];
 }

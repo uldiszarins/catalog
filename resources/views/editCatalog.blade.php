@@ -47,9 +47,9 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Kategorija</label>
                         <div class="col-sm-9">
                             <select class="form-select" name="category" id="category" onchange="getInventoryNumber()">
-                                @foreach ($categories as $category)
-                                    <option @if ($category['id'] == $catalog->category) selected @endif value="{{ $category['id'] }}">
-                                        {{ $category['category_name'] }}</option>
+                                @foreach ($categories as $key => $category)
+                                    <option @if ($category == $catalog->category) selected @endif value="{{ $category }}">
+                                        {{ $key }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -64,7 +64,7 @@
                     <div class="mb-4 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Inventāra numurs</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" required name="inventory_number"
+                            <input type="text" class="form-control" readonly required name="inventory_number"
                                 id="inventory_number" value="{{ $catalog->inventory_number }}">
                         </div>
                     </div>

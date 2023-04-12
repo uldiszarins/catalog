@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Http\Requests\CatalogRequest;
 use App\Http\Service\CatalogService;
 use App\Models\Catalog;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
@@ -71,23 +71,31 @@ class CatalogController extends Controller
 
     public function getInventoryNumber(Int $category): Int
     {
-        $maxInventoryNumber = Catalog::where('category', $category)->max('inventory_number');
+        $maxInventoryNumber = Catalog::where('category', $category)
+            ->max('inventory_number');
 
-        // TODO: neiedod 001 nekad
         if (!$maxInventoryNumber) {
-            $maxInventoryNumber = $category . '001';
+            return $category . '001';
         }
-        return ($maxInventoryNumber + 1);
+
+        return $maxInventoryNumber + 1;
     }
 
     public function getCatalogData(Int $category = null)
     {
-        $catalogData = Catalog::select('id', 'category', 'name', 'inventory_number', 'language', 'author', 'year', 'page_count', 'location')
+        $catalogData = Catalog::select(DB::raw("catalogs.id as catalog_id"), 'category_name', 'name', 'inventory_number', DB::raw("languages.language as language"), 'author', 'year', 'page_count', 'location')
+            ->leftJoin('categories', function ($join) {
+                $join->on('categories.id', '=', 'catalogs.category');
+            })
+            ->leftJoin('languages', function ($join) {
+                $join->on('languages.id', '=', 'catalogs.language');
+            })
             ->when($category, function ($query) use ($category) {
                 return $query->where('category', $category);
             })
-            ->orderBy('id', 'ASC')
+            ->orderBy('catalogs.id', 'ASC')
             ->get();
+
         return [
             'draw' => 1,
             'recordsTotal' => 100,

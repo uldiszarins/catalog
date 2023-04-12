@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Service;
 
 use App\Models\Catalog;
@@ -21,7 +22,7 @@ class CatalogService
 
         $catalog->save();
 
-        if (!$catalog->wasRecentlyCreated) {
+        if (! $catalog->wasRecentlyCreated) {
             throw new CustomException('Create was not successful.');
         }
     }

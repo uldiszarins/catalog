@@ -3,7 +3,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/?cat={{ $category }}">
                 <span data-feather="file-text"></span>
-                {{ $key }} {{ $categoriesCount[$category] }}
+                {{ $key }} @isset($categoriesCount[$category])
+                    {{ $categoriesCount[$category] }}
+                @endisset
             </a>
         </li>
     @endforeach

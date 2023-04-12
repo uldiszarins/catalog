@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
-use App\Models\Category;
-use App\Models\Catalog;
 use Illuminate\View\View;
 use App\Http\Requests\LanguageRequest;
 use Illuminate\Http\RedirectResponse;
