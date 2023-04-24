@@ -36,8 +36,9 @@
             @endif
         @endisset
 
-        <form method="POST" action="{{ route('catalog.store') }}" id="catalog_create">
+        <form method="POST" action="{{ route('catalog.update', ['catalog' => $catalog]) }}" id="catalog_create">
             @csrf
+            <input type="hidden" name="_method" value="PUT">
             <div class="card mt-3">
                 <div class="card-header">
                     <h5>Labot</h5>
@@ -116,7 +117,7 @@
                 </div>
                 <div class="card-footer text-end">
                     <button type="submit" class="btn btn-primary">Labot</button>
-                    <button type="submit" class="btn btn-danger">Dzēst</button>
+                    <!--<button type="submit" class="btn btn-danger">Dzēst</button>-->
                     <a href="/" class="btn btn-secondary">Atcelt</a>
                 </div>
             </div>

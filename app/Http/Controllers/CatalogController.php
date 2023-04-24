@@ -69,6 +69,36 @@ class CatalogController extends Controller
             ->with('status', 'Dati pievienoti!');
     }
 
+    public function update(CatalogRequest $request, int $catalogId): RedirectResponse
+    {
+        $request->validated();
+
+        $catalog = [
+            'category' => $request->category,
+            'name' => $request->name,
+            'inventory_number' => $request->inventory_number,
+            'language' => $request->language,
+            'author' => $request->author,
+            'year' => $request->year,
+            'page_count' => $request->page_count,
+            'photo' => $request->photo,
+            'location' => $request->location,
+        ];
+
+        try {
+            CatalogService::updateCatalog($catalog, $catalogId);
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('catalog.create')
+                ->withInput()
+                ->withErrors(['msg' => 'Kļūda! ' . $e->getMessage()]);
+        }
+
+        return redirect()
+            ->route('home')
+            ->with('status', 'Dati izlaboti!');
+    }
+
     public function getInventoryNumber(Int $category): Int
     {
         $maxInventoryNumber = Catalog::where('category', $category)
