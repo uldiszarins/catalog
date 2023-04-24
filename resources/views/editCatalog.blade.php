@@ -119,7 +119,7 @@
                             @if (Storage::exists('public/' . $catalog->id . '_big.jpg'))
                                 <a href="{{ asset('storage/' . $catalog->id . '_big.jpg') }}" target="_blank">
                                     <img src="{{ asset('storage/' . $catalog->id . '_big.jpg') }}"
-                                        style="width:100%; height:auto" class="card-img-top" alt="asdf">
+                                        class="img-fluid rounded" alt="asdf">
                                 </a>
                             @endif
                         </div>
