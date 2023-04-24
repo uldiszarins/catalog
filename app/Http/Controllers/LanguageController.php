@@ -25,6 +25,21 @@ class LanguageController extends Controller
         ]);
     }
 
+    public function store(LanguageRequest $request): RedirectResponse
+    {
+        $request->validated();
+
+        $language = new Language();
+
+        $language->language = $request['language'];
+
+        $language->save();
+
+        return redirect()
+            ->route('home')
+            ->with('status', 'Dati pievienoti!');
+    }
+
     public function create(): View
     {
         return view('createLanguage');

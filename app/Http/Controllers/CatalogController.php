@@ -51,7 +51,6 @@ class CatalogController extends Controller
             'author' => $request->author,
             'year' => $request->year,
             'page_count' => $request->page_count,
-            'photo' => $request->photo,
             'location' => $request->location,
         ];
 
@@ -73,6 +72,8 @@ class CatalogController extends Controller
     {
         $request->validated();
 
+        $file = $request->file('file');
+
         $catalog = [
             'category' => $request->category,
             'name' => $request->name,
@@ -81,9 +82,15 @@ class CatalogController extends Controller
             'author' => $request->author,
             'year' => $request->year,
             'page_count' => $request->page_count,
-            'photo' => $request->photo,
+            'photo' => ($file ? 1 : 0),
             'location' => $request->location,
         ];
+        
+        if ($file) {
+            // Store the file in the storage directory
+            $fileName = $catalogId . '_big.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public', $fileName);
+        }
 
         try {
             CatalogService::updateCatalog($catalog, $catalogId);
@@ -131,7 +138,7 @@ class CatalogController extends Controller
 
     public function getCatalogData(Int $category = null)
     {
-        $catalogData = Catalog::select(DB::raw("catalogs.id as catalog_id"), 'category_name', 'name', 'inventory_number', DB::raw("languages.language as language"), 'author', 'year', 'page_count', 'location')
+        $catalogData = Catalog::select(DB::raw("catalogs.id as catalog_id"), 'category_name', 'name', 'inventory_number', DB::raw("languages.language as language"), 'author', 'year', 'page_count', 'location', DB::raw("IFNULL(photo, 0) as photo"))
             ->leftJoin('categories', function ($join) {
                 $join->on('categories.id', '=', 'catalogs.category');
             })

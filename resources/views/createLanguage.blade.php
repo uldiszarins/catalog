@@ -55,7 +55,6 @@
 
             <form method="POST" action="{{ route('language.store') }}" id="language_update">
                 @csrf
-                <input type="hidden" name="_method" value="PUT">
                 <div class="card mt-3">
                     <div class="card-header">
                         <h5>Pievienot</h5>

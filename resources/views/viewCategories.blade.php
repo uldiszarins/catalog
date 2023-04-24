@@ -15,9 +15,9 @@
             </nav>
         </div>
         <table class="table table-bordered table-striped">
-            @foreach ($categories as $category)
+            @foreach ($categories as $key => $category)
                 <tr>
-                    <td></td>
+                    <td>{{ $key }}</td>
                 </tr>
             @endforeach
         </table>

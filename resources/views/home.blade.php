@@ -17,6 +17,7 @@
                     <th>Gads</th>
                     <th>Lapaspušu skaits</th>
                     <th>Atrašanās vieta</th>
+                    <th>Foto</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,12 @@
                     },
                     {
                         data: 'location'
+                    },
+                    {
+                        data: 'photo',
+                        "render": function(data, type, row) {
+                            return (data == 1 ? 'Ir' : '');
+                        }
                     }
                 ],
                 dom: '<"row"<"col"B><"col"f>><"tabula"rt><"row"<"col"i><"col"l><"col"p>>',

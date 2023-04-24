@@ -100,12 +100,6 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Vāka foto</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="photo" id="photo" value="1">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Atrašanās vieta</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="location" id="location"

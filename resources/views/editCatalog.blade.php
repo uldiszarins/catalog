@@ -36,13 +36,15 @@
             @endif
         @endisset
 
-        <form method="POST" action="{{ route('catalog.update', ['catalog' => $catalog]) }}" id="catalog_create">
+        <form method="POST" action="{{ route('catalog.update', ['catalog' => $catalog]) }}" id="catalog_create"
+            enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
             <div class="card mt-3">
                 <div class="card-header">
                     <h5>Labot</h5>
                 </div>
+
                 <div class="card-body">
                     <div class="mb-4 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Kategorija</label>
@@ -102,16 +104,24 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Vāka foto</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="photo" id="photo" value="1">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Atrašanās vieta</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="location" id="location"
                                 value="{{ $catalog->location }}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Bilde</label>
+                        <div class="col-sm-3">
+                            <input type="file" class="form-control" name="file">
+                        </div>
+                        <div class="col-sm-6">
+                            @if (Storage::exists('public/' . $catalog->id . '_big.jpg'))
+                                <a href="{{ asset('storage/' . $catalog->id . '_big.jpg') }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $catalog->id . '_big.jpg') }}"
+                                        style="width:100%; height:auto" class="card-img-top" alt="asdf">
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

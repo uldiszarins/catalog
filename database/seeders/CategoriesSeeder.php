@@ -46,6 +46,14 @@ class CategoriesSeeder extends Seeder
                 'id' => 9,
                 'category_name' => 'Citi',
             ],
+            [
+                'id' => 10,
+                'category_name' => 'Tukša 1',
+            ],
+            [
+                'id' => 11,
+                'category_name' => 'Tukša 2',
+            ],
         ]);
     }
 }

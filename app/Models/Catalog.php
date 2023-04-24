@@ -56,5 +56,10 @@ class Catalog extends Model
             'string',
             'max:255',
         ],
+        'file' => [
+            'image',
+            'max:2048',
+            'mimes:jpg',
+        ],
     ];
 }
