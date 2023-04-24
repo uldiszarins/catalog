@@ -17,7 +17,7 @@
         <table class="table table-bordered table-striped">
             @foreach ($categories as $key => $category)
                 <tr>
-                    <td>{{ $key }}</td>
+                    <td><a href="{{ route('category.show', ['category' => $category]) }}">{{ $key }}</a></td>
                 </tr>
             @endforeach
         </table>
