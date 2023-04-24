@@ -23,23 +23,28 @@ class CatalogService
         $catalog->save();
 
         if (! $catalog->wasRecentlyCreated) {
-            throw new CustomException('Create was not successful.');
+            throw new Exception('Neizdevās pievienot ierakstu!');
         }
     }
 
     public static function updateCatalog(array $catalogData, int $catalogId): void
     {
-        $bank = Catalog::findOrFail($catalogId);
-        $bank->update([
+        $catalog = Catalog::findOrFail($catalogId);
+
+        $affectedRows = $catalog->update([
             'category' => $catalogData['category'],
             'name' => $catalogData['name'],
             'inventory_number' => $catalogData['inventory_number'],
             'language' => $catalogData['language'],
             'author' => $catalogData['author'],
             'year' => $catalogData['year'],
-            'page_count' => $catalogData['page_count'],
+            'page_count' => ($catalogData['page_count'] ?? 0),
             'photo' => $catalogData['photo'],
-            'location' => $catalogData['location'],
+            'location' => ($catalogData['location'] ?? ''),
         ]);
+
+        if ($affectedRows == 0) {
+            throw new \Exception('Neizdevās izlabot ierakstu!');
+        }
     }
 }

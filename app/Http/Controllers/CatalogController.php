@@ -89,7 +89,7 @@ class CatalogController extends Controller
             CatalogService::updateCatalog($catalog, $catalogId);
         } catch (\Exception $e) {
             return redirect()
-                ->route('catalog.create')
+                ->route('catalog.show', ['catalog' => $catalogId])
                 ->withInput()
                 ->withErrors(['msg' => 'Kļūda! ' . $e->getMessage()]);
         }
