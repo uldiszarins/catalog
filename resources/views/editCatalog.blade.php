@@ -116,13 +116,18 @@
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">Labot</button>
-                    <!--<button type="submit" class="btn btn-danger">Dzēst</button>-->
+                    <button type="submit"form="catalog_create" class="btn btn-primary">Labot</button>
+                    <button type="submit" form="catalog_delete"
+                        class="btn btn-danger"onclick="return confirm('Dzēst?')">Dzēst</button>
                     <a href="/" class="btn btn-secondary">Atcelt</a>
                 </div>
             </div>
         </form>
     </div>
+    <form method="POST" id="catalog_delete" action="{{ route('catalog.destroy', ['catalog' => $catalog]) }}">
+        @csrf
+        <input type="hidden" name="_method" value="DELETE">
+    </form>
 @endsection
 
 @section('js')

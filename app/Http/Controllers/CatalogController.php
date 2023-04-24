@@ -99,6 +99,24 @@ class CatalogController extends Controller
             ->with('status', 'Dati izlaboti!');
     }
 
+    public function destroy(int $catalogId): RedirectResponse
+    {
+        $catalog = Catalog::find($catalogId);
+
+        try {
+            $catalog->delete();
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('catalog.show', ['catalog' => $catalogId])
+                ->withErrors(['msg' => 'Ierakstu nedrīkst dzēst! ' . $e->getMessage()]);
+        }
+
+        //return response(null, Response::HTTP_NO_CONTENT);
+        return redirect()
+            ->route('home')
+            ->with('status', 'Ieraksts izdzēsts');
+    }
+
     public function getInventoryNumber(Int $category): Int
     {
         $maxInventoryNumber = Catalog::where('category', $category)

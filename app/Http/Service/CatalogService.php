@@ -31,7 +31,7 @@ class CatalogService
     {
         $catalog = Catalog::findOrFail($catalogId);
 
-        $affectedRows = $catalog->update([
+        $catalog->update([
             'category' => $catalogData['category'],
             'name' => $catalogData['name'],
             'inventory_number' => $catalogData['inventory_number'],
@@ -43,7 +43,7 @@ class CatalogService
             'location' => ($catalogData['location'] ?? ''),
         ]);
 
-        if ($affectedRows == 0) {
+        if (!$catalog->wasChanged()) {
             throw new \Exception('Neizdevās izlabot ierakstu!');
         }
     }
