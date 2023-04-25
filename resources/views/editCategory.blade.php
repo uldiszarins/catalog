@@ -21,13 +21,6 @@
                 </div>
             </div>
             <div class="col text-end">
-                <div class="mt-4">
-                    <div class="btn-group">
-                        <a class="btn btn-secondary" href="{{ route('language.create') }}">
-                            Pievienot
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container">

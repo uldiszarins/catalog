@@ -85,7 +85,7 @@ class CatalogController extends Controller
             'photo' => ($file ? 1 : 0),
             'location' => $request->location,
         ];
-        
+
         if ($file) {
             // Store the file in the storage directory
             $fileName = $catalogId . '_big.' . $file->getClientOriginalExtension();
