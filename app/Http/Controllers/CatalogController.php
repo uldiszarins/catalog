@@ -64,7 +64,7 @@ class CatalogController extends Controller
         }
 
         return redirect()
-            ->route('home')
+            ->route('catalog.create')
             ->with('status', 'Dati pievienoti!');
     }
 
@@ -153,8 +153,8 @@ class CatalogController extends Controller
 
         return [
             'draw' => 1,
-            'recordsTotal' => 100,
-            'recordsFiltered' => 20,
+            'recordsTotal' => count($catalogData),
+            'recordsFiltered' => count($catalogData),
             'data' => $catalogData,
         ];
     }

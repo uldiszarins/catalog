@@ -17,7 +17,6 @@ class CatalogService
         $catalog->author = $catalogData['author'];
         $catalog->year = $catalogData['year'];
         $catalog->page_count = ($catalogData['page_count'] ?? 0);
-        $catalog->photo = $catalogData['photo'];
         $catalog->location = ($catalogData['location'] ?? '');
 
         $catalog->save();
