@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-4 mb-4">
         <table class="table table-bordered" id="catalog_table">
             <thead>
                 <tr>
