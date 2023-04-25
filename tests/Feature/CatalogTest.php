@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use App\Models\Catalog;
 
 class CatalogTest extends TestCase
 {
@@ -24,20 +26,44 @@ class CatalogTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/catalog/create');
 
-        /*
-        $bank['b_from'] = date("Y-m-d", strtotime($bank['b_from']));
-        $bank['b_to'] = date("Y-m-d", strtotime($bank['b_to']));
-        $this->assertDatabaseHas('banks', $bank);
+        $this->assertDatabaseHas('catalogs', $catalog);
 
-        $lastBank = Bank::latest()->first();
-        $this->assertEquals($bank['b_code'], $lastBank->b_code);
-        $this->assertEquals($bank['b_name'], $lastBank->b_name);
-        $this->assertEquals($bank['b_account'], $lastBank->b_account);
-        $this->assertEquals($bank['b_from'], date("Y-m-d", strtotime($lastBank->b_from)));
-        $this->assertEquals($bank['b_to'], date("Y-m-d", strtotime($lastBank->b_to)));
-        $this->assertEquals($bank['b_type'], $lastBank->b_type);
-        $this->assertEquals($bank['b_show_in_props'], $lastBank->b_show_in_props);
-        $this->assertEquals($bank['b_order'], $lastBank->b_order);
-        */
+        $lastCatalog = Catalog::latest()->first();
+        $this->assertEquals($catalog['category'], $lastCatalog->category);
+        $this->assertEquals($catalog['name'], $lastCatalog->name);
+        $this->assertEquals($catalog['inventory_number'], $lastCatalog->inventory_number);
+        $this->assertEquals($catalog['language'], $lastCatalog->language);
+        $this->assertEquals($catalog['author'], $lastCatalog->author);
+        $this->assertEquals($catalog['page_count'], $lastCatalog->page_count);
+        $this->assertEquals($catalog['location'], $lastCatalog->location);
+        $this->assertEquals($catalog['year'], $lastCatalog->year);
+    }
+
+    public function testCatalogUpdateValues()
+    {
+        $catalogData = [
+            'category' => rand(1, 11),
+            'name' => 'asddfgsdfg',
+            'inventory_number' => 3001,
+            'language' => 2,
+            'author' => 'asfdfgds',
+            'page_count' => rand(1, 2000),
+            'location' => 'ghfdfghdfgh',
+            'year' => rand(1990, 2023),
+            'file' => UploadedFile::fake()->image('test_image.jpg'),
+        ];
+
+        $response = $this->put('/catalog/1', $catalogData)
+            ->assertRedirect('/');
+
+        $updatedCatalog = Catalog::find(1);
+        $this->assertEquals($catalogData['category'], $updatedCatalog->category);
+        $this->assertEquals($catalogData['name'], $updatedCatalog->name);
+        $this->assertEquals($catalogData['inventory_number'], $updatedCatalog->inventory_number);
+        $this->assertEquals($catalogData['language'], $updatedCatalog->language);
+        $this->assertEquals($catalogData['author'], $updatedCatalog->author);
+        $this->assertEquals($catalogData['page_count'], $updatedCatalog->page_count);
+        $this->assertEquals($catalogData['location'], $updatedCatalog->location);
+        $this->assertEquals($catalogData['year'], $updatedCatalog->year);
     }
 }
