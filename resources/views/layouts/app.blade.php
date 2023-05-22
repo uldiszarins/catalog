@@ -28,60 +28,67 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
+    @auth
+        <div class="container-fluid">
+            <div class="row">
 
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div style="padding: 0.5rem 1rem;">
-                    <a class="btn btn-success" style="padding: 0.5rem 1rem;" href="/">Sākums</a>
-                </div>
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <div style="padding: 0.5rem 1rem;"><a class="btn btn-info" aria-current="page"
-                                    href="{{ route('catalog.create') }}">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div style="padding: 0.5rem 1rem;">
+                        <a class="btn btn-success" style="padding: 0.5rem 1rem;" href="/">Sākums</a>
+                    </div>
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <div style="padding: 0.5rem 1rem;"><a class="btn btn-info" aria-current="page"
+                                        href="{{ route('catalog.create') }}">
+                                        <span data-feather="home"></span>
+                                        Pievienot
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Kategorijas</span>
+                            <a class="link-secondary" href="#" aria-label="Add a new report">
+                                <span data-feather="plus-circle"></span>
+                            </a>
+                        </h6>
+                        @yield('menu')
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Uzstādījumi</span>
+                            <a class="link-secondary" href="#" aria-label="Add a new report">
+                                <span data-feather="plus-circle"></span>
+                            </a>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('category.index') }}">
                                     <span data-feather="home"></span>
-                                    Pievienot
+                                    Kategorijas
                                 </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Kategorijas</span>
-                        <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    @yield('menu')
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Uzstādījumi</span>
-                        <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('category.index') }}">
-                                <span data-feather="home"></span>
-                                Kategorijas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('language.index') }}">
-                                <span data-feather="home"></span>
-                                Valodas
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                @yield('content')
-            </main>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('language.index') }}">
+                                    <span data-feather="home"></span>
+                                    Valodas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    @yield('content')
+                </main>
+            </div>
         </div>
-    </div>
+    @endauth
+    @guest
+        @yield('content')
+
+    @endguest
     @yield('js')
 </body>
 
