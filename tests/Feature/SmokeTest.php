@@ -9,6 +9,7 @@ class SmokeTest extends TestCase
 {
     public function test_home_route()
     {
+        $this->withoutMiddleware();
         $response = $this->get('/');
 
         $response->assertSuccessful();
@@ -17,6 +18,7 @@ class SmokeTest extends TestCase
 
     public function test_catalog_create_route()
     {
+        $this->withoutMiddleware();
         $response = $this->get('/catalog/create');
 
         $response->assertSuccessful();
@@ -25,7 +27,8 @@ class SmokeTest extends TestCase
 
     public function test_catalog_edit_route()
     {
-        $response = $this->get('/catalog/1');
+        $this->withoutMiddleware();
+        $response = $this->get('/catalog/4');
 
         $response->assertSuccessful();
         $response->assertViewIs('editCatalog');
@@ -33,6 +36,7 @@ class SmokeTest extends TestCase
 
     public function test_category_route()
     {
+        $this->withoutMiddleware();
         $response = $this->get('/category');
 
         $response->assertSuccessful();
@@ -41,7 +45,8 @@ class SmokeTest extends TestCase
 
     public function test_edit_category_route()
     {
-        $response = $this->get('/category/1');
+        $this->withoutMiddleware();
+        $response = $this->get('/category/4');
 
         $response->assertSuccessful();
         $response->assertViewIs('editCategory');
@@ -49,6 +54,7 @@ class SmokeTest extends TestCase
 
     public function test_language_route()
     {
+        $this->withoutMiddleware();
         $response = $this->get('/language');
 
         $response->assertSuccessful();
@@ -57,6 +63,7 @@ class SmokeTest extends TestCase
 
     public function test_language_add_route()
     {
+        $this->withoutMiddleware();
         $response = $this->get('/language/create');
 
         $response->assertSuccessful();
@@ -65,9 +72,19 @@ class SmokeTest extends TestCase
 
     public function test_language_edit_route()
     {
-        $response = $this->get('/language/1');
+        $this->withoutMiddleware();
+        $response = $this->get('/language/4');
 
         $response->assertSuccessful();
         $response->assertViewIs('editLanguages');
+    }
+
+    public function test_images_route()
+    {
+        $this->withoutMiddleware();
+        $response = $this->get('/images/1');
+
+        $response->assertSuccessful();
+        $response->assertViewIs('viewImages');
     }
 }

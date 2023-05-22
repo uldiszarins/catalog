@@ -39,11 +39,12 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <div style="padding: 0.5rem 1rem;"><a class="btn btn-info" aria-current="page"
-                                        href="{{ route('catalog.create') }}">
+                                <div style="padding: 0.5rem 1rem;">
+                                    <a class="btn btn-info" aria-current="page" href="{{ route('catalog.create') }}">
                                         <span data-feather="home"></span>
                                         Pievienot
                                     </a>
+                                    <a class="btn btn-info" href="/images/1">Bildes</a>
                                 </div>
                             </li>
                         </ul>
@@ -96,6 +97,7 @@
 
     @endguest
     @yield('js')
+    @yield('css')
 </body>
 
 </html>

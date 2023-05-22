@@ -10,6 +10,8 @@ class CatalogTest extends TestCase
 {
     public function testCatalogCrudIsWorking()
     {
+        $this->withoutMiddleware();
+
         $catalog = [
             'category' => rand(1, 11),
             'name' => 'Test name',
@@ -41,6 +43,8 @@ class CatalogTest extends TestCase
 
     public function testCatalogUpdateValues()
     {
+        $this->withoutMiddleware();
+
         $catalogData = [
             'category' => rand(1, 11),
             'name' => 'asddfgsdfg',
@@ -53,10 +57,10 @@ class CatalogTest extends TestCase
             'file' => UploadedFile::fake()->image('test_image.jpg'),
         ];
 
-        $response = $this->put('/catalog/1', $catalogData)
+        $response = $this->put('/catalog/4', $catalogData)
             ->assertRedirect('/');
 
-        $updatedCatalog = Catalog::find(1);
+        $updatedCatalog = Catalog::find(4);
         $this->assertEquals($catalogData['category'], $updatedCatalog->category);
         $this->assertEquals($catalogData['name'], $updatedCatalog->name);
         $this->assertEquals($catalogData['inventory_number'], $updatedCatalog->inventory_number);

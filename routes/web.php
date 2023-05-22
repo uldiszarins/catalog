@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ImagesController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([ 'middleware' => 'auth' ], function () {
@@ -21,6 +22,9 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::resource('/language', LanguageController::class);
 
     Route::get('/logout', [CatalogController::class, 'logout']);
+
+    Route::get('/images/{category}', [ImagesController::class, 'getImages'])
+        ->where(['category' => '[0-9]+']);
 });
 
 Auth::routes([
