@@ -9,6 +9,7 @@ use App\Http\Requests\CatalogRequest;
 use App\Http\Service\CatalogService;
 use App\Models\Catalog;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CatalogController extends Controller
 {
@@ -157,5 +158,12 @@ class CatalogController extends Controller
             'recordsFiltered' => count($catalogData),
             'data' => $catalogData,
         ];
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return Redirect()->route('home');
     }
 }

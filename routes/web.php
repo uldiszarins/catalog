@@ -19,6 +19,8 @@ Route::group([ 'middleware' => 'auth' ], function () {
 
     Route::resource('/category', CategoryController::class);
     Route::resource('/language', LanguageController::class);
+
+    Route::get('/logout', [CatalogController::class, 'logout']);
 });
 
 Auth::routes([

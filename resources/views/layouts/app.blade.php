@@ -77,6 +77,12 @@
                             </li>
                         </ul>
                     </div>
+                    <div style="padding: 0.5rem 1rem;" class=" text-muted">
+                        {{ auth()->user()->name }}
+                    </div>
+                    <div style="padding: 0.5rem 1rem;">
+                        <a class="btn btn-success" style="padding: 0.5rem 1rem;" href="/logout">Izlogoties</a>
+                    </div>
                 </nav>
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
