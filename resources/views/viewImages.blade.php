@@ -39,7 +39,7 @@
                                 <a href="{{ asset('storage/' . $image->id . '_big.jpg') }}" class="abc"
                                     title="{{ $image->name }}">
                                     <img src="{{ asset('storage/' . $image->id . '_big.jpg') }}"
-                                        class="img-fluid rounded catalog-images" alt="asdf">
+                                        class="img-fluid rounded catalog-images" alt="image" loading="lazy">
                                 </a>
                                 <a
                                     href="{{ route('catalog.show', [
